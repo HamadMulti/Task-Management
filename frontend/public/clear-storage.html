@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Storage - TaskMaster</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        .success {
+            color: #4caf50;
+            font-weight: bold;
+            margin-top: 1rem;
+            display: none;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #667eea;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧹 Clear Storage</h1>
+        <p>If you're experiencing login issues or seeing errors, click the button below to clear all stored data and start fresh.</p>
+        <button onclick="clearStorage()">Clear All Storage Data</button>
+        <div class="success" id="success">
+            ✓ Storage cleared successfully!<br>
+            <a href="/">Go to Login Page</a>
+        </div>
+    </div>
+
+    <script>
+        function clearStorage() {
+            try {
+                // Clear localStorage
+                localStorage.clear();
+                
+                // Clear sessionStorage
+                sessionStorage.clear();
+                
+                // Clear cookies (basic approach)
+                document.cookie.split(";").forEach(function(c) {
+                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+                });
+                
+                // Show success message
+                document.getElementById('success').style.display = 'block';
+                document.querySelector('button').disabled = true;
+                document.querySelector('button').textContent = 'Storage Cleared!';
+                
+                // Optionally redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            } catch (error) {
+                alert('Error clearing storage: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

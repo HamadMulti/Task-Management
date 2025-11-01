@@ -1,0 +1,19 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  CI = "false"
+  REACT_APP_API_URL = "https://your-backend-app.onrender.com/api"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer-when-downgrade"
