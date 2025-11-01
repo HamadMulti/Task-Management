@@ -4,7 +4,7 @@
 
 [build.environment]
   CI = "false"
-  REACT_APP_API_URL = "https://taskmaster-backend-c2of.onrender.com"
+  REACT_APP_API_URL = "https://taskmaster-backend-c2of.onrender.com/api"
 
 [[redirects]]
   from = "/*"
