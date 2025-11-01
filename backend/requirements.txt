@@ -14,3 +14,4 @@ coverage==7.3.2
 pytest-django==4.7.0
 factory-boy==3.3.0
 psycopg2-binary==2.9.9
+coreapi==2.3.3
