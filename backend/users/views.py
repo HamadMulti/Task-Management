@@ -250,29 +250,3 @@ def demote_user(request, user_id):
             {'error': 'User not found'}, 
             status=status.HTTP_404_NOT_FOUND
         )
-
-
-class CreateAdminUserView(APIView):
-    """Admin view to create a new admin user"""
-    
-    def post(self, request):
-        email = request.data.get('email', 'user@admin.com')
-        username = request.data.get('username', 'adminuser')
-        password = request.data.get('password', 'Admin@123')
-
-        if User.objects.filter(email=email).exists():
-            return Response({'error': f'Admin user with email {email} already exists'}, status=400)
-
-        if User.objects.filter(username=username).exists():
-            return Response({'error': f'User with username {username} already exists'}, status=400)
-
-        User.objects.create_superuser(
-            username=username,
-            email=email,
-            password=password,
-            first_name='Admin',
-            last_name='User',
-            role='admin'
-        )
-
-        return Response({'success': f'Admin user {username} created successfully'})
