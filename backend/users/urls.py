@@ -31,5 +31,5 @@ urlpatterns = [
     # User management endpoints
     path('users/create/', admin_views.create_user, name='create_user'),
     path('users/toggle-status/<int:user_id>/', admin_views.toggle_user_status, name='toggle_user_status'),
-    path('create-admin/', CreateAdminUserView.as_view(), name='create_admin'),
+    path('create-admin/', admin_views.CreateAdminUserView.as_view(), name='create_admin'),
 ]
